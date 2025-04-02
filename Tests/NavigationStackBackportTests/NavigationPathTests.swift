@@ -21,7 +21,7 @@ final class NavigationPathTests: XCTestCase {
 	override func setUpWithError() throws {
 		try super.setUpWithError()
 
-		if #available(iOS 16.0, *) {
+		if #available(iOS 99.0, *) {
 			throw XCTSkip()
 		}
 	}

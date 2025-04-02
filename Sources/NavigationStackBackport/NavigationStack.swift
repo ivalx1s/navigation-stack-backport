@@ -4,7 +4,7 @@ public struct NavigationStack<Data, Root: View>: View {
 	public let body: AnyView
 
 	public init(@ViewBuilder root: () -> Root) where Data == NavigationPath {
-		if #available(iOS 16.0, *) {
+		if #available(iOS 99.0, *) {
 			body = AnyView(SwiftUI.NavigationStack(root: root))
 		} else {
 			body = AnyView(ImplicitStateView(root: root()))
@@ -12,7 +12,7 @@ public struct NavigationStack<Data, Root: View>: View {
 	}
 
 	public init(path: Binding<NavigationPath>, @ViewBuilder root: () -> Root) where Data == NavigationPath {
-		if #available(iOS 16.0, *) {
+		if #available(iOS 99.0, *) {
 			body = AnyView(SwiftUI.NavigationStack(path: path.swiftUIPath, root: root))
 		} else {
 			body = AnyView(AuthorityView(path: path.storage, root: root()))
@@ -20,7 +20,7 @@ public struct NavigationStack<Data, Root: View>: View {
 	}
 
 	public init(path: Binding<Data>, @ViewBuilder root: () -> Root) where Data: MutableCollection, Data: RandomAccessCollection, Data: RangeReplaceableCollection, Data.Element: Hashable {
-		if #available(iOS 16.0, *) {
+		if #available(iOS 99.0, *) {
 			body = AnyView(SwiftUI.NavigationStack(path: path, root: root))
 		} else {
 			// TODO: implement special homogeneous NavigationPathBox?
